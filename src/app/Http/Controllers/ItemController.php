@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\SellRequest;
+use App\Http\Requests\ExhibitionRequest;
 use App\Models\Category;
 use App\Models\Item;
 use Illuminate\Support\Facades\Auth;
@@ -48,10 +48,10 @@ class ItemController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view('items.sell', compact('categories'));
+        return view('items.exhibition', compact('categories'));
     }
 
-    public function store(SellRequest $request)
+    public function store(ExhibitionRequest $request)
     {
         $path = $request->file('image')->store('items', 'public');
 

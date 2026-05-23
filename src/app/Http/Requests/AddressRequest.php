@@ -14,9 +14,8 @@ class AddressRequest extends FormRequest
     public function rules()
     {
         return [
-            'postal_code' => ['nullable'],
-            'address' => ['nullable'],
-            'building' => ['nullable'],
+            'postal_code' => ['required', 'regex:/^\d{3}-\d{4}$/'],
+            'address' => ['required'],
         ];
     }
 }
