@@ -6,6 +6,8 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class ProfileRequest extends FormRequest
 {
+    protected $redirect = '/mypage/profile';
+
     public function authorize()
     {
         return true;
@@ -17,8 +19,7 @@ class ProfileRequest extends FormRequest
             'name' => ['required'],
             'postal_code' => ['required', 'regex:/^\d{3}-\d{4}$/'],
             'address' => ['required'],
-            'building' => ['nullable'],
-            'profile_image' => ['nullable', 'image', 'mimes:jpeg,png'],
+            'profile_image' => ['nullable', 'mimes:jpeg,png'],
         ];
     }
 
@@ -26,7 +27,9 @@ class ProfileRequest extends FormRequest
     {
         return [
             'name.required' => 'ユーザー名を入力してください',
-            'profile_image.image' => '画像ファイルをアップロードしてください',
+            'postal_code.required' => '郵便番号を入力してください',
+            'postal_code.regex' => '郵便番号はハイフンありの８文字で入力してください',
+            'address.required' => '住所を入力してください',
             'profile_image.mimes' => 'jpeg, png形式の画像をアップロードしてください',
         ];
     }
