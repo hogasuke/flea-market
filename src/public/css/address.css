@@ -59,6 +59,14 @@
     border: 1px solid #ff5555;
 }
 
+.address-form__error {
+    min-height: 24px;
+    margin: 8px 0 0;
+    color: #ff5555;
+    font-size: 14px;
+    font-weight: 700;
+}
+
 .address-form__button {
     margin-top: clamp(40px, 5vw, 56px);
 }
