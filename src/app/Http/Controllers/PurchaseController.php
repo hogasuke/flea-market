@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PurchaseRequest;
 use App\Models\Item;
 use App\Models\Purchase;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 
 class PurchaseController extends Controller
 {
@@ -21,14 +21,8 @@ class PurchaseController extends Controller
         return view('items.purchase', compact('item', 'user', 'address'));
     }
 
-    public function store(Request $request, Item $item): RedirectResponse
+    public function store(PurchaseRequest $request, Item $item): RedirectResponse
     {
-        $request->validate([
-            'payment_method' => ['required'],
-        ], [
-            'payment_method.required' => '支払い方法を選択してください',
-        ]);
-
         $user = auth()->user();
         $address = session('purchase_address', [
             'postal_code' => $user->postal_code,

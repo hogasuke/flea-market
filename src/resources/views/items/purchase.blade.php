@@ -45,6 +45,9 @@
                 @else
                     <p class="purchase__address-line purchase__address-line--empty">住所が登録されていません</p>
                 @endif
+                @error('postal_code')
+                    <p class="purchase__error">{{ $message }}</p>
+                @enderror
             </section>
 
             <hr class="purchase__divider">
