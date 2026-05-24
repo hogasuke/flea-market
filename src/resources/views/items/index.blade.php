@@ -19,7 +19,7 @@
                             @if (in_array($item->id, $purchasedItemIds))
                                 <span class="item-card__sold">Sold</span>
                             @endif
-                            <img src="{{ $item->image_path }}" alt="{{ $item->name }}">
+                            <img src="{{ asset($item->image_path) }}" alt="{{ $item->name }}">
                         </div>
                         <p class="item-card__name">{{ $item->name }}</p>
                     </article>
