@@ -45,32 +45,34 @@
             @endguest
 
             @auth
-                @if (request()->routeIs('items.index', 'items.show', 'mypage.profile'))
-                    <form class="header-search" action="/" method="get">
-                        <input class="header-search__input" type="text" name="keyword" placeholder="なにをお探しですか？"
-                            value="{{ request('keyword') }}">
-                        @if(request('tab') === 'mylist')
-                            <input type="hidden" name="tab" value="mylist">
-                        @endif
-                    </form>
-                @endif
+                @if (!request()->routeIs('verification.notice'))
+                    @if (request()->routeIs('items.index', 'items.show', 'mypage.profile'))
+                        <form class="header-search" action="/" method="get">
+                            <input class="header-search__input" type="text" name="keyword" placeholder="なにをお探しですか？"
+                                value="{{ request('keyword') }}">
+                            @if(request('tab') === 'mylist')
+                                <input type="hidden" name="tab" value="mylist">
+                            @endif
+                        </form>
+                    @endif
 
-                <nav class="header-nav">
-                    <ul class="header-nav__list">
-                        <li class="header-nav__item">
-                            <form action="/logout" method="post">
-                                @csrf
-                                <button class="header-nav__button" type="submit">ログアウト</button>
-                            </form>
-                        </li>
-                        <li class="header-nav__item">
-                            <a class="header-nav__link" href="/mypage">マイページ</a>
-                        </li>
-                        <li class="header-nav__item">
-                            <a class="header-nav__sell-link" href="{{ route('items.create') }}">出品</a>
-                        </li>
-                    </ul>
-                </nav>
+                    <nav class="header-nav">
+                        <ul class="header-nav__list">
+                            <li class="header-nav__item">
+                                <form action="/logout" method="post">
+                                    @csrf
+                                    <button class="header-nav__button" type="submit">ログアウト</button>
+                                </form>
+                            </li>
+                            <li class="header-nav__item">
+                                <a class="header-nav__link" href="/mypage">マイページ</a>
+                            </li>
+                            <li class="header-nav__item">
+                                <a class="header-nav__sell-link" href="{{ route('items.create') }}">出品</a>
+                            </li>
+                        </ul>
+                    </nav>
+                @endif
             @endauth
         </div>
     </header>
