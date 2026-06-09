@@ -88,6 +88,29 @@ class PurchaseTest extends TestCase
     }
 
     /** @test */
+    public function selected_payment_method_is_reflected_in_summary()
+    {
+        $seller = User::factory()->create();
+        $buyer  = User::factory()->create();
+        $item   = Item::factory()->create(['user_id' => $seller->id]);
+
+        $response = $this->actingAs($buyer)
+            ->get(route('purchase.show', $item));
+
+        $response->assertStatus(200);
+
+        // プルダウンに両方の選択肢が存在する
+        $response->assertSee('コンビニ支払い');
+        $response->assertSee('カード支払い');
+
+        // 小計欄に支払い方法の表示エリアが存在する
+        $response->assertSee('id="summary_payment"', false);
+
+        // JavaScript が選択変更を小計に反映するコードを含む
+        $response->assertSee('summaryPayment.textContent = this.value', false);
+    }
+
+    /** @test */
     public function purchase_is_completed_when_buy_button_is_pressed()
     {
         $seller = User::factory()->create();
