@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ExhibitionRequest;
 use App\Models\Category;
 use App\Models\Item;
+use App\Models\Purchase;
 use Illuminate\Support\Facades\Auth;
 
 class ItemController extends Controller
@@ -14,9 +15,7 @@ class ItemController extends Controller
         $keyword = trim((string) request('keyword'));
         $tab = request('tab', 'recommend');
 
-        $purchasedItemIds = auth()->check()
-            ? auth()->user()->purchases()->pluck('item_id')->toArray()
-            : [];
+        $soldItemIds = Purchase::pluck('item_id')->toArray();
 
         if ($tab === 'mylist') {
             if (!auth()->check()) {
@@ -29,7 +28,7 @@ class ItemController extends Controller
                 ->latest()
                 ->get();
 
-            return view('items.index', compact('items', 'tab', 'purchasedItemIds'));
+            return view('items.index', compact('items', 'tab', 'soldItemIds'));
         }
 
         $itemsQuery = Item::query()
@@ -42,7 +41,7 @@ class ItemController extends Controller
 
         $items = $itemsQuery->get();
 
-        return view('items.index', compact('items', 'tab', 'purchasedItemIds'));
+        return view('items.index', compact('items', 'tab', 'soldItemIds'));
     }
 
     public function create()

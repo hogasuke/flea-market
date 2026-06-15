@@ -16,7 +16,7 @@
                 <a class="item-card" href="{{ route('items.show', $item->id) }}">
                     <article>
                         <div class="item-card__image">
-                            @if (in_array($item->id, $purchasedItemIds))
+                            @if (in_array($item->id, $soldItemIds))
                                 <span class="item-card__sold">Sold</span>
                             @endif
                             <img src="{{ asset($item->image_path) }}" alt="{{ $item->name }}">

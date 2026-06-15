@@ -85,7 +85,7 @@ class PurchaseTest extends TestCase
         $response->assertSee('カード支払い');
 
         // 小計欄に支払い方法の表示エリアが存在する
-        $response->assertSee('id="summary_payment"', false);
+        $response->assertSee('id="summary-payment"', false);
 
         // JavaScript が選択変更を小計に反映するコードを含む
         $response->assertSee('summaryPayment.textContent = this.value', false);

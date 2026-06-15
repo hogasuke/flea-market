@@ -31,7 +31,7 @@
                         <a class="item-card" href="{{ route('items.show', $item->id) }}">
                             <article>
                                 <div class="item-card__image">
-                                    <img src="{{ $item->image_path }}" alt="{{ $item->name }}">
+                                    <img src="{{ asset($item->image_path) }}" alt="{{ $item->name }}">
                                 </div>
                                 <p class="item-card__name">{{ $item->name }}</p>
                             </article>
@@ -42,7 +42,7 @@
                         <a class="item-card" href="{{ route('items.show', $item->id) }}">
                             <article>
                                 <div class="item-card__image">
-                                    <img src="{{ $item->image_path }}" alt="{{ $item->name }}">
+                                    <img src="{{ asset($item->image_path) }}" alt="{{ $item->name }}">
                                 </div>
                                 <p class="item-card__name">{{ $item->name }}</p>
                             </article>

@@ -27,5 +27,4 @@ class Purchase extends Model
     {
         return $this->belongsTo(Item::class);
     }
-
 }

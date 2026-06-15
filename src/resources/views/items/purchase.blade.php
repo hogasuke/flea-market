@@ -6,11 +6,11 @@
 
 @section('content')
     <form class="purchase" action="{{ route('purchase.store', $item) }}" method="post">
-    @csrf
+        @csrf
         <div class="purchase__left">
             <div class="purchase__item">
                 <div class="purchase__item-image">
-                    <img src="{{ $item->image_path }}" alt="{{ $item->name }}">
+                    <img src="{{ asset($item->image_path) }}" alt="{{ $item->name }}">
                 </div>
                 <div class="purchase__item-info">
                     <p class="purchase__item-name">{{ $item->name }}</p>
@@ -62,7 +62,7 @@
                     </tr>
                     <tr class="purchase__summary-row">
                         <th class="purchase__summary-label">支払い方法</th>
-                        <td class="purchase__summary-value" id="summary_payment">
+                        <td class="purchase__summary-value" id="summary-payment">
                             <span class="purchase__summary-payment-placeholder">-</span>
                         </td>
                     </tr>
@@ -75,7 +75,7 @@
 
     <script>
         const select = document.getElementById('payment_method');
-        const summaryPayment = document.getElementById('summary_payment');
+        const summaryPayment = document.getElementById('summary-payment');
 
         select.addEventListener('change', function () {
             summaryPayment.textContent = this.value || '-';

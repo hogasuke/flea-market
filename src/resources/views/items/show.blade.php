@@ -94,19 +94,19 @@
             </section>
 
             @auth
-            <section class="item-detail__section">
-                <h2 class="item-detail__comment-title">商品へのコメント</h2>
-                <form action="{{ route('items.comments.store', $item->id) }}" method="POST">
-                    @csrf
-                    <textarea class="item-detail__comment-input" name="content">{{ old('content') }}</textarea>
-                    @if ($errors->has('content'))
-                        <div class="item-detail__comment-error">
-                            {{ $errors->first('content') }}
-                        </div>
-                    @endif
-                    <button class="item-detail__comment-button" type="submit">コメントを送信する</button>
-                </form>
-            </section>
+                <section class="item-detail__section">
+                    <h2 class="item-detail__comment-title">商品へのコメント</h2>
+                    <form action="{{ route('items.comments.store', $item->id) }}" method="POST">
+                        @csrf
+                        <textarea class="item-detail__comment-input" name="content">{{ old('content') }}</textarea>
+                        @if ($errors->has('content'))
+                            <div class="item-detail__comment-error">
+                                {{ $errors->first('content') }}
+                            </div>
+                        @endif
+                        <button class="item-detail__comment-button" type="submit">コメントを送信する</button>
+                    </form>
+                </section>
             @endauth
         </div>
     </div>

@@ -14,8 +14,8 @@
             {{-- 商品画像 --}}
             <div class="sell-form__section">
                 <h2 class="sell-form__section-title">商品画像</h2>
-                <div class="sell-form__image-area" id="imageArea">
-                    <img class="sell-form__image-preview" id="imagePreview" src="" alt="" style="display:none;">
+                <div class="sell-form__image-area" id="image-area">
+                    <img class="sell-form__image-preview" id="image-preview" src="" alt="" style="display:none;">
                     <label class="sell-form__image-button" for="image">画像を選択する</label>
                     <input class="sell-form__image-input" type="file" id="image" name="image" accept="image/*">
                 </div>
@@ -112,7 +112,7 @@
             if (!file) return;
             const reader = new FileReader();
             reader.onload = function(ev) {
-                const preview = document.getElementById('imagePreview');
+                const preview = document.getElementById('image-preview');
                 preview.src = ev.target.result;
                 preview.style.display = 'block';
             };
